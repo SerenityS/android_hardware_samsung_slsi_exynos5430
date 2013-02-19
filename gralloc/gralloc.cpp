@@ -164,7 +164,8 @@ static int gralloc_alloc_rgb(int ionfd, int w, int h, int format, int usage,
 
     if (format != HAL_PIXEL_FORMAT_BLOB) {
         if ((usage & GRALLOC_USAGE_HW_VIDEO_ENCODER) || (format == HAL_PIXEL_FORMAT_BGRA_8888)) {
-            bpr = ALIGN(w, 16)* bpp;
+            bpr = ALIGN(w, 64)* bpp;
+        if (usage & GRALLOC_USAGE_HW_VIDEO_ENCODER)
             vstride = ALIGN(h, 16);
         } else {
             bpr = ALIGN(w*bpp, 16);
