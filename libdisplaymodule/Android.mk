@@ -15,13 +15,17 @@
 ifeq ($(filter-out exynos5,$(TARGET_BOARD_PLATFORM)),)
 
 LOCAL_PATH:= $(call my-dir)
+
+PLATFORM_DIR := $(TARGET_BOARD_PLATFORM)-insignal
+
 include $(CLEAR_VARS)
 
 LOCAL_PRELINK_MODULE := false
 LOCAL_SHARED_LIBRARIES := liblog libutils libcutils libexynosutils libexynosv4l2 libsync libhwcutils libexynosgscaler libdisplay libmpp
 
 LOCAL_C_INCLUDES := \
-	$(LOCAL_PATH)/../../exynos5/include \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
+	$(TOP)/hardware/samsung_slsi/$(PLATFORM_DIR)/include \
 	$(TOP)/hardware/samsung_slsi/exynos/include \
 	$(TOP)/hardware/samsung_slsi/exynos/libexynosutils \
 	$(TOP)/hardware/samsung_slsi/$(TARGET_SOC)/include \
@@ -30,6 +34,9 @@ LOCAL_C_INCLUDES := \
 	$(TOP)/hardware/samsung_slsi/exynos/libhwcUtils \
 	$(TOP)/hardware/samsung_slsi/exynos/libdisplay \
 	$(TOP)/hardware/samsung_slsi/exynos/libmpp
+
+LOCAL_ADDITIONAL_DEPENDENCIES += \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_SRC_FILES := \
 	ExynosPrimaryDisplay.cpp

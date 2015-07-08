@@ -17,6 +17,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
+PLATFORM_DIR := $(TARGET_BOARD_PLATFORM)-insignal
 
 ###############################################################################
 # libcsecurepath.a
@@ -30,7 +31,7 @@ LOCAL_SRC_FILES	+= 	\
 	sec_g2ddrm.cpp
 
 LOCAL_C_INCLUDES += \
-	$(LOCAL_PATH)/../../exynos5/include \
+	$(TOP)/hardware/samsung_slsi/$(PLATFORM_DIR)/include \
 	$(TOP)/hardware/samsung_slsi/exynos/include
 
 LOCAL_SHARED_LIBRARIES += libMcClient

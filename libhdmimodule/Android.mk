@@ -15,13 +15,17 @@
 ifeq ($(filter-out exynos5,$(TARGET_BOARD_PLATFORM)),)
 
 LOCAL_PATH:= $(call my-dir)
+
+PLATFORM_DIR := $(TARGET_BOARD_PLATFORM)-insignal
+
 include $(CLEAR_VARS)
 
 LOCAL_PRELINK_MODULE := false
 LOCAL_SHARED_LIBRARIES := liblog libutils libcutils libexynosutils libexynosv4l2 libsync libhdmi libdisplay
 
 LOCAL_C_INCLUDES := \
-	$(LOCAL_PATH)/../../exynos5/include \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
+	$(TOP)/hardware/samsung_slsi/$(PLATFORM_DIR)/include \
 	$(TOP)/hardware/samsung_slsi/exynos/include \
 	$(TOP)/hardware/samsung_slsi/exynos/libexynosutils \
 	$(TOP)/hardware/samsung_slsi/$(TARGET_SOC)/include \
@@ -29,6 +33,9 @@ LOCAL_C_INCLUDES := \
 	$(TOP)/hardware/samsung_slsi/exynos/libhwc \
 	$(TOP)/hardware/samsung_slsi/exynos/libhwcutils \
 	$(TOP)/hardware/samsung_slsi/exynos/libdisplay
+
+LOCAL_ADDITIONAL_DEPENDENCIES += \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 ifeq ($(BOARD_HDMI_INCAPABLE), true)
 LOCAL_C_INCLUDES += $(TOP)/hardware/samsung_slsi/exynos/libhdmi_dummy
