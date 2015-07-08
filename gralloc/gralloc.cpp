@@ -130,8 +130,8 @@ static unsigned int _select_heap(int usage)
 static int gralloc_alloc_rgb(int ionfd, int w, int h, int format, int usage,
                              unsigned int ion_flags, private_handle_t **hnd, int *stride)
 {
-    size_t size, bpr, alignment = 0, ext_size=256;
-    int bpp = 0, vstride, fd, err;
+    size_t size = w * h, bpr, alignment = 0, ext_size=256;
+    int bpp = 0, vstride = h, fd = -1, err;
     unsigned int heap_mask = _select_heap(usage);
 
     if (format == HAL_PIXEL_FORMAT_RGBA_8888) {
@@ -358,7 +358,7 @@ static int gralloc_alloc(alloc_device_t* dev,
                          int w, int h, int format, int usage,
                          buffer_handle_t* pHandle, int* pStride)
 {
-    int stride;
+    int stride = w;
     int err;
     unsigned int ion_flags = 0;
     private_handle_t *hnd = NULL;
