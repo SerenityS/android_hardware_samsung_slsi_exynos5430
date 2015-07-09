@@ -168,15 +168,6 @@ public:
     ExynosJpegEncoder();
     virtual ~ExynosJpegEncoder();
 
-    enum QUALITY {
-        QUALITY_LEVEL_1 = 0,    /* high */
-        QUALITY_LEVEL_2,
-        QUALITY_LEVEL_3,
-        QUALITY_LEVEL_4,
-        QUALITY_LEVEL_5,
-        QUALITY_LEVEL_6,        /* low */
-    };
-
     int create(void);
     int destroy(void);
 

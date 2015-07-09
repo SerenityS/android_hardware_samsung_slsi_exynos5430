@@ -190,16 +190,7 @@ int ExynosJpegEncoder::setQuality(int iV4l2Quality)
     if (t_bFlagCreate == false)
         return ERROR_JPEG_DEVICE_NOT_CREATE_YET;
 
-    if (iV4l2Quality >= 96)
-        t_stJpegConfig.enc_qual = QUALITY_LEVEL_1;
-    else if (iV4l2Quality >= 92)
-        t_stJpegConfig.enc_qual = QUALITY_LEVEL_2;
-    else if (iV4l2Quality >= 38)
-        t_stJpegConfig.enc_qual = QUALITY_LEVEL_4;
-    else if (iV4l2Quality >= 30)
-        t_stJpegConfig.enc_qual = QUALITY_LEVEL_5;
-    else
-        t_stJpegConfig.enc_qual = QUALITY_LEVEL_6;
+    t_stJpegConfig.enc_qual = iV4l2Quality;
 
     return ERROR_NONE;
 }
