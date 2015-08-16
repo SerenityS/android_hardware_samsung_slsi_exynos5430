@@ -14,7 +14,9 @@
 # limitations under the License.
 #
 
+ifeq ($(TARGET_SLSI_VARIANT),cm)
 ifeq ($(TARGET_SOC), exynos5430)
+
 exynos543x_dirs := \
 	mobicore \
 	gralloc \
@@ -36,4 +38,5 @@ endif
 
 include $(call all-named-subdir-makefiles,$(exynos543x_dirs))
 
+endif
 endif

@@ -17,8 +17,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-PLATFORM_DIR := $(TARGET_BOARD_PLATFORM)-insignal
-
 ###############################################################################
 # libcsecurepath.a
 include $(CLEAR_VARS)
@@ -31,11 +29,11 @@ LOCAL_SRC_FILES	+= 	\
 	sec_g2ddrm.cpp
 
 LOCAL_C_INCLUDES += \
-	$(TOP)/hardware/samsung_slsi/$(PLATFORM_DIR)/include \
-	$(TOP)/hardware/samsung_slsi/exynos/include
+	$(TOP)/hardware/samsung_slsi-cm/$(TARGET_BOARD_PLATFORM)/include \
+	$(TOP)/hardware/samsung_slsi-cm/exynos/include
 
 LOCAL_SHARED_LIBRARIES += libMcClient
 
-include hardware/samsung_slsi/$(TARGET_SOC)/mobicore/common/LogWrapper/Android.mk
+include hardware/samsung_slsi-cm/$(TARGET_SOC)/mobicore/common/LogWrapper/Android.mk
 
 include $(BUILD_STATIC_LIBRARY)
