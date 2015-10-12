@@ -156,6 +156,28 @@ struct private_handle_t {
 
     static int validate(const native_handle* h) {
         const private_handle_t* hnd = (const private_handle_t*)h;
+
+#if 0
+        if (!h) {
+            ALOGE("invalid gralloc handle (NULL)");
+        } else if (h->version != sizeof(native_handle)) {
+            ALOGE("invalid gralloc handle (at %p) - version=%lu (expected=%lu)",
+                  reinterpret_cast<void *>(const_cast<native_handle *>(h)),
+                  (unsigned long)h->version,
+                  (unsigned long)sizeof(native_handle));
+        } else if (hnd->numInts + hnd->numFds != sNumInts + sNumFds) {
+            ALOGE("invalid gralloc handle (at %p) - "
+                  "hnd->numInts(%d) + hnd->numFds(%d) != sNumInts(%d) + sNumFds(%d)",
+                  reinterpret_cast<void *>(const_cast<native_handle *>(h)),
+                  hnd->numInts, hnd->numFds, sNumInts, sNumFds);
+        } else if (hnd->magic != sMagic) {
+            ALOGE("invalid gralloc handle (at %p) - "
+                  "hnd->magic(%x) != sMagic(%x)",
+                  reinterpret_cast<void *>(const_cast<native_handle *>(h)),
+                  hnd->magic, sMagic);
+        }
+#endif
+
         if (!h || h->version != sizeof(native_handle) ||
             hnd->numInts + hnd->numFds != sNumInts + sNumFds ||
             hnd->magic != sMagic)
