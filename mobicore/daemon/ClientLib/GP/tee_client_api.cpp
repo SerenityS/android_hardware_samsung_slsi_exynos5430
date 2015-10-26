@@ -30,6 +30,10 @@
  */
 #undef LOG_TAG
 #define LOG_TAG "GpClient"
+
+#include <stdlib.h>
+#include <string.h>
+
 #include "tee_client_api.h"
 #include "log.h"
 #include "MobiCoreDriverApi.h"

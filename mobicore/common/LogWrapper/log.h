@@ -34,6 +34,8 @@
 #ifndef TLCWRAPPERANDROIDLOG_H_
 #define TLCWRAPPERANDROIDLOG_H_
 
+#include <errno.h>
+#include <string.h>
 #ifndef WIN32
 #include <unistd.h>
 #define GETPID getpid
